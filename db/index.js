@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const db = new Sequelize(
-  process.env.DATABASE_URL || 'postgres://localhost/versionlayer'
+  process.env.DATABASE_URL || 'postgres://localhost/versionlayer',
+  { logging: false }
 );
 
 const Story = db.define('story', {
