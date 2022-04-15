@@ -13,6 +13,12 @@ const Story = db.define('story', {
   },
 });
 
+const View = db.define('view', {
+  text: {
+    type: Sequelize.STRING,
+  },
+});
+
 const syncAndSeed = async () => {
   try {
     await db.sync({ force: true });
@@ -26,6 +32,7 @@ const syncAndSeed = async () => {
       content:
         'Cras semper auctor neque vitae tempus quam. Egestas purus viverra accumsan in nisl. Morbi tincidunt augue interdum velit euismod in. Tortor vitae purus faucibus ornare suspendisse sed nisi. Dui accumsan sit amet nulla facilisi morbi tempus iaculis urna. Purus sit amet luctus venenatis lectus. Malesuada bibendum arcu vitae elementum curabitur. Dignissim sodales ut eu sem. Cursus eget nunc scelerisque viverra. Mattis aliquam faucibus purus in massa. Justo nec ultrices dui sapien eget mi proin sed. Nullam non nisi est sit. Venenatis urna cursus eget nunc scelerisque. Non curabitur gravida arcu ac tortor dignissim.',
     });
+    await View.create({ text: 'human' });
   } catch (error) {
     console.log(error);
   }

@@ -21,6 +21,7 @@ class Gate extends React.Component {
     this.props.setView(this.state.password);
     this.setState({ password: '' });
     ev.target.focus();
+    console.log(window.localStorage);
   }
 
   render() {
