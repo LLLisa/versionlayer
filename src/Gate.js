@@ -1,7 +1,52 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { setView } from './store';
 
-const Gate = () => {
-  return <div>gategategate</div>;
+class Gate extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      password: '',
+    };
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
+  }
+
+  handleOnChange(ev) {
+    this.setState({ [ev.target.name]: ev.target.value });
+  }
+
+  handleOnSubmit(ev) {
+    ev.preventDefault();
+    this.props.setView(this.state.password);
+    this.setState({ password: '' });
+    ev.target.focus();
+  }
+
+  render() {
+    return (
+      <div>
+        <div>we are in the version layer</div>
+        <form onSubmit={this.handleOnSubmit}>
+          <input
+            autoFocus
+            name="password"
+            value={this.state.password}
+            onChange={this.handleOnChange}
+          ></input>
+          <button>.</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setView: (password) => {
+      return dispatch(setView(password));
+    },
+  };
 };
 
-export default Gate;
+export default connect((state) => state, mapDispatchToProps)(Gate);
